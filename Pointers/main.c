@@ -38,7 +38,7 @@ void array_pointer(void)
     int *p=arr;// poniter p storing 1st element address
     printf(" value of first ele=%d\n",*p);
     printf(" address of first ele=%p\n",p);
-    printf(" adding 1 =%d\n",*p+1); //here 1 adds to 2nd element
+    printf(" adding 1 =%d\n",*p+1); //here add 1 to lement
     printf("moving next elemnet=%d\n",*(p+1));//moving elements
 
 
@@ -80,8 +80,93 @@ void array_of_pointers(void)
     printf("%d\n",*p[1]);
 
 }
+//null pointer
+//a pointer point to nothing.
+void null_pointer(void)
+{
+    int *p=NULL;
+    printf("Address stored in p = %p\n", (void *)p);
+    if (p==NULL) printf("p is null pointer\n");
 
 
+
+}
+// wild pointer
+//A wild pointer is a pointer that has not been initialized.
+void wild_pointer(void)
+{
+    int x = 10;
+    int *p;
+    p=&x;
+
+
+    printf("this  wild pointer is a pointer that has not been initialized.= %d\n", *p);
+}
+//dangling point
+//it cantain address but but the object at that address has already stopped existing.
+
+
+    void dangling_pointer(void)
+{
+    int *p;
+
+    {
+        int x = 10;
+        p = &x;
+
+        printf("%d\n", *p);
+    }
+
+    printf("p is now dangling\n");
+}
+//void pointer that can hold the address of different data types.
+void void_pointer(void)
+{
+    int x = 10;
+    float y = 5.5f;
+    char z = 'A';
+
+    void *p;
+
+    p = &x;
+    printf("Integer = %d\n", *(int *)p); //using type casting
+
+    p = &y;
+    printf("Float = %.1f\n", *(float *)p);
+
+    p = &z;
+    printf("Character = %c\n", *(char *)p);
+}
+
+//A function pointer stores the address of a function.
+
+int add(int a ,int b)
+{
+    return a + b;
+}
+void function_pointer(void)
+{
+    int (*fp)(int,int);
+    fp=add;
+     printf("Result = %d\n", fp(10, 20));
+}
+//pointer with const keyword
+void display(const int *p)
+{
+   // cannot change the value through p.
+    printf("%d\n", *p);
+   // *p = 50;// cannot change but int p can change
+}
+
+//const pointer here we can change value
+void cost_ponter(int *const p)
+{
+    *p=50;
+}
+void both_const(const int *const p)
+{
+    printf("to read but both are protected we cannot change %d\n", *p);
+}
 
 
 
@@ -94,5 +179,20 @@ int main(){
     array_looping();
     pointer_to_array();
     array_of_pointers();
+    null_pointer();
+    wild_pointer();
+    void_pointer();
+    function_pointer();
+    
+    int x = 10;
+    int y=10;
+
+    display(&x);
+    cost_ponter(&y);
+    both_const(&x);
+    printf("changed value %d\n",y);
+
+
+    return 0;
 
 }
