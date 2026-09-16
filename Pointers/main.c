@@ -85,7 +85,7 @@ void array_of_pointers(void)
 void null_pointer(void)
 {
     int *p=NULL;
-    printf("Address stored in p = %p\n", (void *)p);
+    printf("Address stored in p = %p\n", p);
     if (p==NULL) printf("p is null pointer\n");
 
 
